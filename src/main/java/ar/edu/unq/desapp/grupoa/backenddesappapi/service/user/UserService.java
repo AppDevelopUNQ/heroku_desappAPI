@@ -3,9 +3,11 @@ package ar.edu.unq.desapp.grupoa.backenddesappapi.service.user;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.requestbody.DonationRequestBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPost;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPut;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserLogIn;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBodyList;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidLogInException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.MailValidation;
 
@@ -23,4 +25,6 @@ public interface UserService {
     int save(UserBodyPost user) throws MailValidation, InvalidOrNullFieldException;
 
     void donate(Integer id, DonationRequestBody body) throws InvalidIdException, InvalidOrNullFieldException;
+
+    UserResponseBody logIn(UserLogIn body) throws InvalidOrNullFieldException, MailValidation, InvalidLogInException;
 }

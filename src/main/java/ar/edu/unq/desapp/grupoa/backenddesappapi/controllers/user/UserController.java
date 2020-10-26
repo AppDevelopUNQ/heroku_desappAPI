@@ -3,9 +3,11 @@ package ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.requestbody.DonationRequestBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPost;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPut;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserLogIn;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBodyList;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidLogInException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.MailValidation;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.service.user.UserService;
@@ -45,6 +47,12 @@ public class UserController {
     })
     public ResponseEntity<UserResponseBody> getUser(@PathVariable Integer id) throws InvalidIdException {
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
+    }
+
+    //logIn
+    @PutMapping(value = "/login", produces = { "application/json" },consumes = { "application/json" })
+    public ResponseEntity<UserResponseBody> logIn(@RequestBody UserLogIn body) throws MailValidation, InvalidOrNullFieldException, InvalidLogInException {
+        return new ResponseEntity<>(userService.logIn(body),HttpStatus.OK);
     }
 
     //update exception for id and body

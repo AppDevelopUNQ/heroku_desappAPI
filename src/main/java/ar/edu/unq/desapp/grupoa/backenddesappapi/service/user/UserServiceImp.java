@@ -3,6 +3,7 @@ package ar.edu.unq.desapp.grupoa.backenddesappapi.service.user;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.requestbody.DonationRequestBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPost;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPut;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserLogIn;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBodyList;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.project.ProjectDAO;
@@ -10,6 +11,7 @@ import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.punctuationsystem.Punctuati
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.user.UserDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.wallet.WalletDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidLogInException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.MailValidation;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Project;
@@ -20,6 +22,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -83,6 +87,22 @@ public class UserServiceImp implements UserService {
         projectDAO.save(recoveredProject);
     }
 
+    @Override
+    public UserResponseBody logIn(UserLogIn body) throws InvalidOrNullFieldException, MailValidation, InvalidLogInException {
+        this.validateEmail(body.getEmail());
+        this.validatePassword(body.getPassword());
+        List<User> result = ((List<User>) userDAO.findAll()).stream().filter(user -> user.getEmail().equals(body.getEmail())).collect(Collectors.toList());
+        this.validateResult(result, body.getPassword());
+        User userRecovered = result.get(0);
+        return new UserResponseBody(userRecovered);
+    }
+
+    private void validateResult(List<User> result, String password) throws InvalidLogInException {
+        if(result.isEmpty() || !result.get(0).getPassword().equals(password)){
+            throw  new InvalidLogInException("");
+        }
+    }
+
     private void validateDonationRequest(DonationRequestBody body) throws InvalidIdException, InvalidOrNullFieldException {
         this.validateProjectId(body.getProjectId());
         this.validateAmount(body.getAmount());
@@ -122,6 +142,14 @@ public class UserServiceImp implements UserService {
     private void validateName(String name) throws InvalidOrNullFieldException {
         if (!StringUtils.hasText(name)){
             throw new InvalidOrNullFieldException("name");
+        }
+    }
+
+    private void validateEmail(String email) throws MailValidation {
+        Pattern VALID_EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = VALID_EMAIL.matcher(email);
+        if(!matcher.find()) {
+            throw new MailValidation();
         }
     }
 
