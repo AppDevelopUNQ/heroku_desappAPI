@@ -2,7 +2,7 @@ package ar.edu.unq.desapp.grupoa.backenddesappapi.service.locality;
 
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality.requestbody.LocalityBodyPost;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.locality.LocalityDAO;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Locality;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +21,15 @@ public class LocalityServiceImp implements LocalityService {
     }
 
     @Override
-    public Locality getById(Integer id) throws InvalidIdException {
+    public Locality getById(Integer id) throws InvalidException {
         Long value = Long.valueOf(id);
         this.validateId(value);
         return localityDAO.findById(value).orElse(new Locality());
     }
 
-    private void validateId(Long value) throws InvalidIdException {
+    private void validateId(Long value) throws InvalidException {
         if (!localityDAO.existsById(value)){
-            throw new InvalidIdException(value);
+            throw new InvalidException("id: "+value);
         }
     }
 
@@ -65,7 +65,7 @@ public class LocalityServiceImp implements LocalityService {
     }
 
     @Override
-    public void delete(Integer id) throws InvalidIdException {
+    public void delete(Integer id) throws InvalidException {
         Long value = Long.valueOf(id);
         validateId(value);
         localityDAO.deleteById(value);

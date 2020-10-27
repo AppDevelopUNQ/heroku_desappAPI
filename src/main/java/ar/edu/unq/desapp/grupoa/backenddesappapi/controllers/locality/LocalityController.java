@@ -1,7 +1,7 @@
 package ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality;
 
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality.requestbody.LocalityBodyPost;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Locality;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.service.locality.LocalityService;
@@ -9,7 +9,6 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,7 +38,7 @@ public class LocalityController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful retrieval of a locality",response = Locality.class),
     })
-    public ResponseEntity<Locality> getLocality(@PathVariable Integer id) throws InvalidIdException {
+    public ResponseEntity<Locality> getLocality(@PathVariable Integer id) throws InvalidException {
         return new ResponseEntity<>(localityService.getById(id), HttpStatus.OK);
     }
 
@@ -51,7 +50,7 @@ public class LocalityController {
 
     //DELETE_ONE
     @DeleteMapping(value = "/{id}", produces = { "application/json" })
-    public ResponseEntity deleteLocality(@PathVariable Integer id) throws InvalidIdException {
+    public ResponseEntity deleteLocality(@PathVariable Integer id) throws InvalidException {
         localityService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }

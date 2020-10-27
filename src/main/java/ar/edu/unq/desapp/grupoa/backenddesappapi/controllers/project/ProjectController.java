@@ -4,7 +4,7 @@ import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.project.requestbody
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.project.requestbody.ProjectBodyPut;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.project.responsebody.ProjectResponseBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.project.responsebody.ProjectResponseBodyList;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.service.project.ProjectService;
 import io.swagger.annotations.ApiResponse;
@@ -41,7 +41,7 @@ public class ProjectController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful retrieval of all users",response = ProjectResponseBody.class),
     })
-    public ResponseEntity<ProjectResponseBody> getProject(@PathVariable Integer id) throws InvalidIdException {
+    public ResponseEntity<ProjectResponseBody> getProject(@PathVariable Integer id) throws InvalidException {
         return new ResponseEntity<>(projectService.getById(id), HttpStatus.OK);
     }
 
@@ -50,7 +50,7 @@ public class ProjectController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful retrieval of all users",response = ProjectResponseBody.class),
     })
-    public  ResponseEntity<ProjectResponseBody> updateProject(@RequestBody ProjectBodyPut project, @PathVariable Long id) throws InvalidIdException, InvalidOrNullFieldException {
+    public  ResponseEntity<ProjectResponseBody> updateProject(@RequestBody ProjectBodyPut project, @PathVariable Long id) throws InvalidException, InvalidOrNullFieldException {
         return new ResponseEntity<>(projectService.update(project, id), HttpStatus.OK);
     }
 
@@ -59,13 +59,13 @@ public class ProjectController {
             @ApiResponse(code = 200, message = "Successful retrieval of all users",response = String.class),
     })
     @PostMapping(value = "/", produces = { "application/json" },consumes = { "application/json" })
-    public ResponseEntity<Integer> addProject(@RequestBody ProjectBodyPost projectBody) throws InvalidOrNullFieldException, InvalidIdException {
+    public ResponseEntity<Integer> addProject(@RequestBody ProjectBodyPost projectBody) throws InvalidOrNullFieldException, InvalidException {
         return new ResponseEntity<>(projectService.save(projectBody), HttpStatus.OK);
     }
 
     //DELETE_ONE
     @DeleteMapping(value = "/{id}", produces = { "application/json" })
-    public ResponseEntity<String> deleteProject(@PathVariable Integer id) throws InvalidIdException {
+    public ResponseEntity<String> deleteProject(@PathVariable Integer id) throws InvalidException {
         projectService.delete(id);
         return new ResponseEntity<>("OK",HttpStatus.OK);
     }

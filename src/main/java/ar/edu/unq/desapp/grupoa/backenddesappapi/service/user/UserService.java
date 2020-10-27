@@ -6,8 +6,7 @@ import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.Us
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserLogIn;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBodyList;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidLogInException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.MailValidation;
 
@@ -16,15 +15,15 @@ import java.util.List;
 public interface UserService {
     List<UserResponseBodyList> listAllUsers();
 
-    UserResponseBody getById(Integer id) throws InvalidIdException;
+    UserResponseBody getById(Integer id) throws InvalidException;
 
-    void update(UserBodyPut body, Long id) throws InvalidIdException, MailValidation, InvalidOrNullFieldException;
+    void update(UserBodyPut body, Long id) throws InvalidException, MailValidation, InvalidOrNullFieldException;
 
-    void delete(Integer id) throws InvalidIdException;
+    void delete(Integer id) throws InvalidException;
 
     int save(UserBodyPost user) throws MailValidation, InvalidOrNullFieldException;
 
-    void donate(Integer id, DonationRequestBody body) throws InvalidIdException, InvalidOrNullFieldException;
+    void donate(Integer id, DonationRequestBody body) throws InvalidException, InvalidOrNullFieldException;
 
-    UserResponseBody logIn(UserLogIn body) throws InvalidOrNullFieldException, MailValidation, InvalidLogInException;
+    UserResponseBody logIn(UserLogIn body) throws InvalidOrNullFieldException, MailValidation, InvalidException, InvalidException;
 }

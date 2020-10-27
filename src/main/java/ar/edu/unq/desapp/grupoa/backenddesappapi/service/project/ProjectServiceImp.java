@@ -6,7 +6,7 @@ import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.project.responsebod
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.project.responsebody.ProjectResponseBodyList;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.locality.LocalityDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.project.ProjectDAO;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Locality;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Project;
@@ -33,7 +33,7 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
-    public ProjectResponseBody getById(Integer id) throws InvalidIdException {
+    public ProjectResponseBody getById(Integer id) throws InvalidException {
         Long value = Long.valueOf(id);
         validateId(value);
         Project recoverProject = projectDAO.findById(value).orElse(new Project());
@@ -41,7 +41,7 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
-    public Integer save(ProjectBodyPost body) throws InvalidOrNullFieldException, InvalidIdException  {
+    public Integer save(ProjectBodyPost body) throws InvalidOrNullFieldException, InvalidException {
         this.validateNewProjectBody(body);
         Locality locality = localityDAO.findById(body.getLocalityId()).orElse(new Locality());
         Project project = new Project();
@@ -49,14 +49,14 @@ public class ProjectServiceImp implements ProjectService {
     }
 
     @Override
-    public void delete(Integer id) throws InvalidIdException {
+    public void delete(Integer id) throws InvalidException {
         Long value = Long.valueOf(id);
         validateId(value);
         projectDAO.deleteById(value);
     }
 
     @Override
-    public ProjectResponseBody update(ProjectBodyPut project, Long id) throws InvalidIdException, InvalidOrNullFieldException {
+    public ProjectResponseBody update(ProjectBodyPut project, Long id) throws InvalidException, InvalidOrNullFieldException {
         Long value = Long.valueOf(id);
         this.validateId(value);
 
@@ -74,13 +74,13 @@ public class ProjectServiceImp implements ProjectService {
         return new ProjectResponseBody(recoveredProject);
     }
 
-    private void validateId(Long id) throws InvalidIdException {
+    private void validateId(Long id) throws InvalidException {
         if (!projectDAO.existsById(id)){
-            throw new InvalidIdException(id);
+            throw new InvalidException("id: "+id);
         }
     }
 
-    private void validateNewProjectBody(ProjectBodyPost body) throws InvalidOrNullFieldException, InvalidIdException {
+    private void validateNewProjectBody(ProjectBodyPost body) throws InvalidOrNullFieldException, InvalidException {
         this.validateName(body.getName());
         this.validateFantasyName(body.getFantasyName());
         this.validateLocality(body.getLocalityId());
@@ -114,9 +114,9 @@ public class ProjectServiceImp implements ProjectService {
         }
     }
 
-    private void validateLocality(Long localityId) throws InvalidIdException {
+    private void validateLocality(Long localityId) throws InvalidException {
         if (localityId == null || ! localityDAO.existsById(localityId)){
-            throw new InvalidIdException(localityId);
+            throw new InvalidException("id: "+localityId);
         }
     }
 

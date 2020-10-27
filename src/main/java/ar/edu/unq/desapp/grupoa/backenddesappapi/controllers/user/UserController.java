@@ -6,8 +6,7 @@ import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.Us
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserLogIn;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.responsebody.UserResponseBodyList;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidLogInException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.MailValidation;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.service.user.UserService;
@@ -45,19 +44,19 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful retrieval of a user",response = UserResponseBody.class),
     })
-    public ResponseEntity<UserResponseBody> getUser(@PathVariable Integer id) throws InvalidIdException {
+    public ResponseEntity<UserResponseBody> getUser(@PathVariable Integer id) throws InvalidException {
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
     }
 
     //logIn
-    @PutMapping(value = "/login", produces = { "application/json" },consumes = { "application/json" })
-    public ResponseEntity<UserResponseBody> logIn(@RequestBody UserLogIn body) throws MailValidation, InvalidOrNullFieldException, InvalidLogInException {
+    @PostMapping(value = "/login", produces = { "application/json" },consumes = { "application/json" })
+    public ResponseEntity<UserResponseBody> logIn(@RequestBody UserLogIn body) throws MailValidation, InvalidOrNullFieldException, InvalidException {
         return new ResponseEntity<>(userService.logIn(body),HttpStatus.OK);
     }
 
     //update exception for id and body
     @PutMapping(value = "/{id}", produces = { "application/json" },consumes = { "application/json" })
-    public  ResponseEntity updateUser(@RequestBody UserBodyPut user, @PathVariable Long id) throws MailValidation, InvalidIdException, InvalidOrNullFieldException {
+    public  ResponseEntity updateUser(@RequestBody UserBodyPut user, @PathVariable Long id) throws MailValidation, InvalidException, InvalidOrNullFieldException {
         userService.update(user, id);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
@@ -70,14 +69,14 @@ public class UserController {
 
     //DELETE_ONE exception for id
     @DeleteMapping(value = "/{id}", produces = { "application/json" })
-    public ResponseEntity<String> deleteUser(@PathVariable Integer id) throws InvalidIdException {
+    public ResponseEntity<String> deleteUser(@PathVariable Integer id) throws InvalidException {
         userService.delete(id);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
     //DONATE exception for id and body
     @PostMapping(value = "/{id}/donate", produces = { "application/json" },consumes = { "application/json" })
-    public ResponseEntity<String> donate(@PathVariable Integer id, @RequestBody DonationRequestBody body) throws InvalidIdException, InvalidOrNullFieldException {
+    public ResponseEntity<String> donate(@PathVariable Integer id, @RequestBody DonationRequestBody body) throws InvalidException, InvalidOrNullFieldException {
         userService.donate(id, body);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }

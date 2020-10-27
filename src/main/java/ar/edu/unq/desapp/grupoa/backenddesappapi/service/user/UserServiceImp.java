@@ -10,8 +10,7 @@ import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.project.ProjectDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.punctuationsystem.PunctuationSystemDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.user.UserDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.wallet.WalletDAO;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidIdException;
-import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidLogInException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.MailValidation;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Project;
@@ -40,7 +39,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public UserResponseBody getById(Integer id) throws InvalidIdException {
+    public UserResponseBody getById(Integer id) throws InvalidException {
         Long value = Long.valueOf(id);
         this.validateId(value);
         User userRecovered = userDAO.findById(value).orElse(new User());
@@ -48,7 +47,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void update(UserBodyPut body, Long id) throws InvalidIdException, MailValidation, InvalidOrNullFieldException {
+    public void update(UserBodyPut body, Long id) throws InvalidException, MailValidation, InvalidOrNullFieldException {
         Long value = Long.valueOf(id);
         this.validateId(value);
         this.validateBodyPut(body);
@@ -57,7 +56,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void delete(Integer id) throws InvalidIdException {
+    public void delete(Integer id) throws InvalidException {
         Long value = Long.valueOf(id);
         this.validateId(value);
         userDAO.deleteById(value);
@@ -76,7 +75,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void donate(Integer id, DonationRequestBody body) throws InvalidIdException, InvalidOrNullFieldException {
+    public void donate(Integer id, DonationRequestBody body) throws InvalidException, InvalidOrNullFieldException {
         Long value = Long.valueOf(id);
         this.validateId(value);
         this.validateDonationRequest(body);
@@ -88,7 +87,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public UserResponseBody logIn(UserLogIn body) throws InvalidOrNullFieldException, MailValidation, InvalidLogInException {
+    public UserResponseBody logIn(UserLogIn body) throws InvalidOrNullFieldException, MailValidation, InvalidException {
         this.validateEmail(body.getEmail());
         this.validatePassword(body.getPassword());
         List<User> result = ((List<User>) userDAO.findAll()).stream().filter(user -> user.getEmail().equals(body.getEmail())).collect(Collectors.toList());
@@ -97,13 +96,13 @@ public class UserServiceImp implements UserService {
         return new UserResponseBody(userRecovered);
     }
 
-    private void validateResult(List<User> result, String password) throws InvalidLogInException {
+    private void validateResult(List<User> result, String password) throws InvalidException {
         if(result.isEmpty() || !result.get(0).getPassword().equals(password)){
-            throw  new InvalidLogInException("");
+            throw new InvalidException("email or password");
         }
     }
 
-    private void validateDonationRequest(DonationRequestBody body) throws InvalidIdException, InvalidOrNullFieldException {
+    private void validateDonationRequest(DonationRequestBody body) throws InvalidException, InvalidOrNullFieldException {
         this.validateProjectId(body.getProjectId());
         this.validateAmount(body.getAmount());
     }
@@ -114,10 +113,10 @@ public class UserServiceImp implements UserService {
         }
     }
 
-    private void validateProjectId(Integer projectId) throws InvalidIdException {
+    private void validateProjectId(Integer projectId) throws InvalidException {
         Long value = Long.valueOf(projectId);
         if (!projectDAO.existsById(value)){
-            throw new InvalidIdException(value);
+            throw new InvalidException("id: "+value);
         }
     }
 
@@ -153,9 +152,9 @@ public class UserServiceImp implements UserService {
         }
     }
 
-    private void validateId(Long id) throws InvalidIdException {
+    private void validateId(Long id) throws InvalidException {
         if (!userDAO.existsById(id)){
-            throw new InvalidIdException(id);
+            throw new InvalidException("id: "+id);
         }
     }
 }
