@@ -1,0 +1,91 @@
+2020-11-18 17:52:32,848 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting BackendDesappApiApplication using Java 1.8.0_265 on axel-HP-240-G7-Notebook-PC with PID 6468 (/home/axel/Escritorio/2020/backend-desapp-api/target/classes started by axel in /home/axel/Escritorio/2020/backend-desapp-api)
+2020-11-18 17:52:32,924 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2020-11-18 17:52:33,098 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-18 17:52:33,100 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-18 17:52:38,536 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-18 17:52:38,843 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 286 ms. Found 7 JPA repository interfaces.
+2020-11-18 17:52:41,554 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2020-11-18 17:52:41,576 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2020-11-18 17:52:41,577 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2020-11-18 17:52:41,578 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.39]
+2020-11-18 17:52:41,743 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2020-11-18 17:52:41,753 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 8651 ms
+2020-11-18 17:52:41,978 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2020-11-18 17:52:43,305 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2020-11-18 17:52:43,325 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-18 17:52:44,276 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-18 17:52:44,703 INFO org.hibernate.jpa.internal.util.LogHelper [task-1] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-18 17:52:44,881 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-18 17:52:45,081 INFO org.hibernate.Version [task-1] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-18 17:52:47,412 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [task-1] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-18 17:52:48,525 INFO org.hibernate.dialect.Dialect [task-1] HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-11-18 17:52:51,571 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2020-11-18 17:52:54,015 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [restartedMain] 
+
+Using generated security password: ec3d1910-c482-4251-a9c5-539577325684
+
+2020-11-18 17:52:54,506 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@199e2f86, org.springframework.security.web.context.SecurityContextPersistenceFilter@3723fe31, org.springframework.security.web.header.HeaderWriterFilter@34d1f882, org.springframework.web.filter.CorsFilter@41f5c0fb, org.springframework.security.web.authentication.logout.LogoutFilter@66798a01, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30b59ed4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72f29cf5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@47efee35, org.springframework.security.web.session.SessionManagementFilter@10310c70, org.springframework.security.web.access.ExceptionTranslationFilter@ba5066c]
+2020-11-18 17:52:55,337 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2020-11-18 17:52:55,528 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-18 17:52:56,081 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [task-1] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-18 17:52:56,156 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [task-1] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-18 17:52:57,568 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Triggering deferred initialization of Spring Data repositories…
+2020-11-18 17:52:59,546 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Spring Data repositories initialized!
+2020-11-18 17:52:59,587 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BackendDesappApiApplication in 30.129 seconds (JVM running for 34.141)
+2020-11-18 17:53:58,407 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-18 17:53:58,408 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2020-11-18 17:53:58,416 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 7 ms
+2020-11-18 17:54:29,451 INFO ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality.LocalityController [http-nio-8080-exec-2] method: GET | route: /locality/list | parameters: none | body: none
+2020-11-18 17:55:35,233 INFO ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality.LocalityController [http-nio-8080-exec-8] method: GET | route: /locality/{id} | parameters: 1 | body: none
+2020-11-18 17:56:18,193 INFO ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality.LocalityController [http-nio-8080-exec-9] method: POST | route: /locality/ | parameters: none | body: ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality.requestbody.LocalityBodyPost@59356c91
+2020-11-18 17:57:20,865 INFO ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality.LocalityController [http-nio-8080-exec-1] method: DELETE | route: /locality/{id} | parameters: 19 | body: none
+2020-11-18 17:57:36,498 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringContextShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-18 17:57:36,542 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-18 17:57:36,782 WARN org.springframework.beans.factory.support.DisposableBeanAdapter [SpringContextShutdownHook] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-18 17:57:36,784 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2020-11-18 17:57:36,797 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2020-11-18 17:58:17,655 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting BackendDesappApiApplication using Java 1.8.0_265 on axel-HP-240-G7-Notebook-PC with PID 6844 (/home/axel/Escritorio/2020/backend-desapp-api/target/classes started by axel in /home/axel/Escritorio/2020/backend-desapp-api)
+2020-11-18 17:58:17,666 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to default profiles: default
+2020-11-18 17:58:18,100 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-11-18 17:58:18,101 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-11-18 17:58:22,263 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-18 17:58:22,400 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 118 ms. Found 7 JPA repository interfaces.
+2020-11-18 17:58:24,203 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2020-11-18 17:58:24,223 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2020-11-18 17:58:24,225 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2020-11-18 17:58:24,228 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.39]
+2020-11-18 17:58:24,393 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2020-11-18 17:58:24,398 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 6295 ms
+2020-11-18 17:58:24,555 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2020-11-18 17:58:25,056 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2020-11-18 17:58:25,078 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [restartedMain] H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2020-11-18 17:58:25,512 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [restartedMain] Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-18 17:58:25,685 INFO org.hibernate.jpa.internal.util.LogHelper [task-1] HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-18 17:58:25,842 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-18 17:58:25,949 INFO org.hibernate.Version [task-1] HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-18 17:58:26,593 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [task-1] HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-18 17:58:27,076 INFO org.hibernate.dialect.Dialect [task-1] HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-11-18 17:58:28,266 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2020-11-18 17:58:29,022 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [restartedMain] 
+
+Using generated security password: 48ea6d36-177d-4843-9929-027c64c36d6a
+
+2020-11-18 17:58:29,346 INFO org.springframework.security.web.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@419f7bb9, org.springframework.security.web.context.SecurityContextPersistenceFilter@18b5a9e1, org.springframework.security.web.header.HeaderWriterFilter@794ab8d4, org.springframework.web.filter.CorsFilter@31f65b44, org.springframework.security.web.authentication.logout.LogoutFilter@36b3a81f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@584c50e8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@191485de, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@40c5a216, org.springframework.security.web.session.SessionManagementFilter@3b5b8eac, org.springframework.security.web.access.ExceptionTranslationFilter@7807ff54]
+2020-11-18 17:58:29,582 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2020-11-18 17:58:29,941 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2020-11-18 17:58:30,439 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [task-1] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-18 17:58:30,469 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [task-1] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-18 17:58:31,194 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Triggering deferred initialization of Spring Data repositories…
+2020-11-18 17:58:32,005 INFO org.springframework.data.repository.config.DeferredRepositoryInitializationListener [restartedMain] Spring Data repositories initialized!
+2020-11-18 17:58:32,024 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BackendDesappApiApplication in 16.566 seconds (JVM running for 20.608)
+2020-11-18 17:59:01,201 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-11-18 17:59:01,202 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2020-11-18 17:59:01,204 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2020-11-18 17:59:01,388 INFO ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality.LocalityController [http-nio-8080-exec-1] method: POST | route: /locality/ | parameters: none | body: ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.locality.requestbody.LocalityBodyPost@75453121
+2020-11-18 17:59:28,601 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringContextShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-18 17:59:28,605 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-18 17:59:28,820 WARN org.springframework.beans.factory.support.DisposableBeanAdapter [SpringContextShutdownHook] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos ya esta cerrada (para des-habilitar el cerrado automatico durante el shutdown de la VM, agregue ";DB_CLOSE_ON_EXIT=FALSE" a la URL de conexión)
+Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-200]
+2020-11-18 17:59:28,821 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2020-11-18 17:59:28,831 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.

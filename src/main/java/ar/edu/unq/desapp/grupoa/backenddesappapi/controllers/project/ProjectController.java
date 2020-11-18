@@ -9,6 +9,8 @@ import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldExc
 import ar.edu.unq.desapp.grupoa.backenddesappapi.service.project.ProjectService;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ import java.util.List;
 public class ProjectController {
 
     private @Autowired ProjectService projectService;
+    private Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
     public ProjectController(ProjectService projectService) {
         this.projectService = projectService;
@@ -33,6 +36,7 @@ public class ProjectController {
             @ApiResponse(code = 200, message = "Successful retrieval of all users", response = ProjectResponseBodyList.class, responseContainer = "List"),
     })
     public ResponseEntity<List> listProjects() {
+        logger.info("method: GET | route: /project/list | parameters: none | body: none");
         return new ResponseEntity<> (projectService.listAllProjects(), HttpStatus.OK);
     }
 
@@ -42,6 +46,7 @@ public class ProjectController {
             @ApiResponse(code = 200, message = "Successful retrieval of all users",response = ProjectResponseBody.class),
     })
     public ResponseEntity<ProjectResponseBody> getProject(@PathVariable Integer id) throws InvalidException {
+        logger.info("method: GET | route: /project/{id} | parameters: "+id+" | body: none");
         return new ResponseEntity<>(projectService.getById(id), HttpStatus.OK);
     }
 
@@ -51,6 +56,7 @@ public class ProjectController {
             @ApiResponse(code = 200, message = "Successful retrieval of all users",response = ProjectResponseBody.class),
     })
     public  ResponseEntity<ProjectResponseBody> updateProject(@RequestBody ProjectBodyPut project, @PathVariable Long id) throws InvalidException, InvalidOrNullFieldException {
+        logger.info("method: PUT | route: /project/{id} | parameters: "+id+" | body: "+ project);
         return new ResponseEntity<>(projectService.update(project, id), HttpStatus.OK);
     }
 
@@ -60,6 +66,7 @@ public class ProjectController {
     })
     @PostMapping(value = "/", produces = { "application/json" },consumes = { "application/json" })
     public ResponseEntity<Integer> addProject(@RequestBody ProjectBodyPost projectBody) throws InvalidOrNullFieldException, InvalidException {
+        logger.info("method: POST | route: /project/ | parameters: none | body: "+ projectBody);
         return new ResponseEntity<>(projectService.save(projectBody), HttpStatus.OK);
     }
 
@@ -67,6 +74,7 @@ public class ProjectController {
     @DeleteMapping(value = "/{id}", produces = { "application/json" })
     public ResponseEntity<String> deleteProject(@PathVariable Integer id) throws InvalidException {
         projectService.delete(id);
+        logger.info("method: DELETE | route: /project/{id} | parameters: "+id+" | body: none");
         return new ResponseEntity<>("OK",HttpStatus.OK);
     }
 }
