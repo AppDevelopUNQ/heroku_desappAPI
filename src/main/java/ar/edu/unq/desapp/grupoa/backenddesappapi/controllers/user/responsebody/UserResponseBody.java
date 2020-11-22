@@ -16,6 +16,7 @@ public class UserResponseBody {
     private String password;
     private List<DonationResponseBodyUser> donations;
     private Double points;
+    private Boolean isAdmin;
 
     public UserResponseBody(){}
 
@@ -27,6 +28,7 @@ public class UserResponseBody {
         this.password = user.getPassword();
         this.donations = this.mapDonations(user.getDonations());
         this.points = user.getWallet().getPoints();
+        this.isAdmin = user.getIsAdmin();
     }
 
     public List<DonationResponseBodyUser> mapDonations(List<Donation> donations) {
@@ -87,5 +89,13 @@ public class UserResponseBody {
 
     public void setPoints(Double points) {
         this.points = points;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }

@@ -54,6 +54,16 @@ public class LocalityController {
         return new ResponseEntity<>(localityService.save(locality), HttpStatus.OK);
     }
 
+    //Configurar datos de una localidad
+    @PutMapping(value = "/{id}", produces = { "application/json" })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful retrieval of a locality",response = Locality.class),
+    })
+    public ResponseEntity<Locality> update(@PathVariable Integer id, @RequestBody LocalityBodyPost locality) throws InvalidException, InvalidOrNullFieldException {
+        logger.info("method: GET | route: /locality/{id} | parameters: "+ id +" | body: none");
+        return new ResponseEntity<>(localityService.updateLocality(id, locality), HttpStatus.OK);
+    }
+
     //DELETE_ONE
     @DeleteMapping(value = "/{id}", produces = { "application/json" })
     public ResponseEntity deleteLocality(@PathVariable Integer id) throws InvalidException {

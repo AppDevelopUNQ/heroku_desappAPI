@@ -47,7 +47,7 @@ public class LocalityServiceImp implements LocalityService {
     }
 
     private void validatePopulation(Integer population) throws InvalidOrNullFieldException {
-        if(population == null || population == 0) {
+        if(population == null || population <= 0) {
             throw new InvalidOrNullFieldException("population");
         }
     }
@@ -69,5 +69,15 @@ public class LocalityServiceImp implements LocalityService {
         Long value = Long.valueOf(id);
         validateId(value);
         localityDAO.deleteById(value);
+    }
+
+    @Override
+    public Locality updateLocality(Integer localityId, LocalityBodyPost locality) throws InvalidException, InvalidOrNullFieldException {
+        Long value = Long.valueOf(localityId);
+        this.validateId(value);
+        Locality recoveredLocality = localityDAO.findById(value).orElse(new Locality());
+        this.validateBody(locality);
+        recoveredLocality.setBody(locality);
+        return localityDAO.save(recoveredLocality);
     }
 }

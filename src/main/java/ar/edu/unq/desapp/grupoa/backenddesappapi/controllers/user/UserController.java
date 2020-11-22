@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user;
 
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.requestbody.DonationRequestBody;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.responsebody.DonationResponseBodyUser;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPost;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPut;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserLogIn;
@@ -19,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -53,6 +55,17 @@ public class UserController {
     public ResponseEntity<UserResponseBody> getUser(@PathVariable Integer id) throws InvalidException {
         logger.info("method: GET | route: /user/{id} | parameters: "+id+" | body: none");
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
+    }
+
+    //get_donations
+    @CrossOrigin
+    @GetMapping(value = "/{id}/donations", produces = { "application/json" })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful retrieval of a user",response = ArrayList.class),
+    })
+    public ResponseEntity<List<DonationResponseBodyUser>> getUserDonations(@PathVariable Integer id) throws InvalidException {
+        logger.info("method: GET | route: /user/{id} | parameters: "+id+" | body: none");
+        return new ResponseEntity<>(userService.getDonationsOfUser(id), HttpStatus.OK);
     }
 
     //logIn

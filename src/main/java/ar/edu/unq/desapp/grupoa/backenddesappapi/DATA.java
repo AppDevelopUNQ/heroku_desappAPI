@@ -21,17 +21,41 @@ public class DATA{
     private Locality locality2 = new Locality("L3", "province", 2500, 35.0);
     private Locality locality3 = new Locality("L4", "province", 25000, 45.0);
 
-    private Project project = new Project("P1", 9000.0, "FP1", LocalDate.now(), LocalDate.now(), this.locality);
-    private Project projectB = new Project("P2", 8000.0, "FP2", LocalDate.now(), LocalDate.now(), 2000.0, this.locality1);
-    private Project projectC = new Project("P3", 10000.0, "FP3", LocalDate.now(), LocalDate.now(), this.locality);
-    private Project projectD = new Project("P4", 11000.0, "FP4", LocalDate.now(), LocalDate.now(), 5000.0, this.locality3);
-    private Project projectE = new Project("P5", 12000.0, "FP5", LocalDate.now(), LocalDate.now(), this.locality2);
+    private Project project = new Project("P1", 90.0, "FP1", LocalDate.now(),  LocalDate.parse("2022-11-27"), this.locality);
+    private Project projectB = new Project("P2", 80.0, "FP2", LocalDate.now(), LocalDate.parse("2023-11-27"), 200.0, this.locality1);
+    private Project projectC = new Project("P3", 60.0, "FP3", LocalDate.now(), LocalDate.parse("2021-11-27"), this.locality);
+    private Project projectD = new Project("P4", 67.0, "FP4", LocalDate.now(), LocalDate.parse("2022-11-27"), 50.0, this.locality3);
+    private Project projectE = new Project("P5", 78.0, "FP5", LocalDate.now(), LocalDate.parse("2021-11-27"), this.locality2);
 
-    private Donation donation = new Donation(200.0, "nickname", this.project());
-    private Donation d1 = new Donation(20.0, "init", this.projectE);
-    private Donation d2 = new Donation(20.0, "init", this.projectE);
-    private Donation d3 = new Donation(20.0, "init", this.projectE);
-    private Donation d4 = new Donation(20.0, "init", this.projectE);
+    private Project projectF = new Project("P6", 50.0, "FP1", LocalDate.now(), LocalDate.parse("2023-11-27"), this.locality);
+    private Project projectG = new Project("P7", 60.0, "FP2", LocalDate.now(), LocalDate.parse("2022-11-27"), 10.0, this.locality1);
+    private Project projectH = new Project("P8", 70.0, "FP3", LocalDate.now(), LocalDate.parse("2021-11-27"), this.locality);
+    private Project projectI = new Project("P9", 80.0, "FP4", LocalDate.now(), LocalDate.parse("2020-11-27"), 5.0, this.locality3);
+    private Project projectJ = new Project("PA", 58.0, "FP5", LocalDate.now(), LocalDate.parse("2021-11-27"), this.locality2);
+
+    private Project projectK = new Project("PB", 76.0, "FP1", LocalDate.now(), LocalDate.parse("2021-11-27"), this.locality);
+    private Project projectL = new Project("PC", 86.0, "FP2", LocalDate.now(), LocalDate.parse("2022-11-27"), 2.0, this.locality1);
+    private Project projectM = new Project("PD", 85.0, "FP3", LocalDate.now(), LocalDate.parse("2022-11-27"), this.locality);
+    private Project projectN = new Project("PE", 52.0, "FP4", LocalDate.now(), LocalDate.parse("2022-11-27"), 1.0, this.locality3);
+    private Project projectO = new Project("PF", 64.0, "FP5", LocalDate.now(), LocalDate.parse("2021-11-27"), this.locality2);
+
+    private Project projectP = new Project("P10", 65.0, "FP1", LocalDate.now(), LocalDate.parse("2024-11-27"), this.locality);
+    private Project projectQ = new Project("P11", 78.0, "FP2", LocalDate.now(), LocalDate.parse("2024-11-27"), 4.0, this.locality1);
+    private Project projectR = new Project("P12", 36.0, "FP3", LocalDate.now(), LocalDate.parse("2026-11-27"), this.locality);
+    private Project projectS = new Project("P13", 18.0, "FP4", LocalDate.now(), LocalDate.parse("2025-11-27"), 6.0, this.locality3);
+    private Project projectT = new Project("PK", 12.0, "FP5", LocalDate.now(),  LocalDate.parse("2027-11-27"), this.locality2);
+
+    private Project projectU = new Project("P14", 90.0, "FP1", LocalDate.now(), LocalDate.parse("2028-11-27"), this.locality);
+    private Project projectV = new Project("P15", 83.0, "FP2", LocalDate.now(), LocalDate.parse("2029-11-27"), 8.0, this.locality1);
+    private Project projectW = new Project("P16", 63.0, "FP3", LocalDate.now(), LocalDate.parse("2028-11-27"), this.locality);
+    private Project projectX = new Project("P17", 61.0, "FP4", LocalDate.now(), LocalDate.parse("2029-11-27"), 9.0, this.locality3);
+    private Project projectY = new Project("P18", 82.0, "FP5", LocalDate.now(), LocalDate.parse("2030-11-27"), this.locality2);
+
+    private Donation donation = new Donation(200.0, "aeonclock","axel.lopez.garabal@gmail.com" , 200.0,this.project());
+    private Donation d1 = new Donation(20.0, "init", "b@gmail.com",20.0, this.projectE);
+    private Donation d2 = new Donation(20.0, "init", "c@gmail.com", 20.0,this.projectE);
+    private Donation d3 = new Donation(20.0, "init","d@gmail.com", 20.0,this.projectE);
+    private Donation d4 = new Donation(20.0, "init","e@gmail.com", 20.0,this.projectE);
 
     private InvertedLocality forLocality = new InvertedLocality();
     private InvertedCash forCash = new InvertedCash();
@@ -85,4 +109,24 @@ public class DATA{
         this.projectE.receiveNewDonation(this.d4);
         return this.projectE;
     }
+    public Project projectF(){return this.projectF;}
+    public Project projectG(){return this.projectG;}
+    public Project projectH(){return this.projectH;}
+    public Project projectI(){return this.projectI;}
+    public Project projectJ(){return this.projectJ;}
+    public Project projectK(){return this.projectK;}
+    public Project projectL(){return this.projectL;}
+    public Project projectM(){return this.projectM;}
+    public Project projectN(){return this.projectN;}
+    public Project projectO(){return this.projectO;}
+    public Project projectP(){return this.projectP;}
+    public Project projectQ(){return this.projectQ;}
+    public Project projectR(){return this.projectR;}
+    public Project projectS(){return this.projectS;}
+    public Project projectT(){return this.projectT;}
+    public Project projectU(){return this.projectU;}
+    public Project projectV(){return this.projectV;}
+    public Project projectW(){return this.projectW;}
+    public Project projectX(){return this.projectX;}
+    public Project projectY(){return this.projectY;}
 }

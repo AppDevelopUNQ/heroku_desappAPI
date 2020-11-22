@@ -32,6 +32,26 @@ public class Loader {
         projectDAO.save(data.projectC());
         projectDAO.save(data.projectD());
         projectDAO.save(data.projectE());
+        projectDAO.save(data.projectF());
+        projectDAO.save(data.projectG());
+        projectDAO.save(data.projectH());
+        projectDAO.save(data.projectI());
+        projectDAO.save(data.projectJ());
+        projectDAO.save(data.projectK());
+        projectDAO.save(data.projectL());
+        projectDAO.save(data.projectM());
+        projectDAO.save(data.projectN());
+        projectDAO.save(data.projectO());
+        projectDAO.save(data.projectP());
+        projectDAO.save(data.projectQ());
+        projectDAO.save(data.projectR());
+        projectDAO.save(data.projectS());
+        projectDAO.save(data.projectT());
+        projectDAO.save(data.projectU());
+        projectDAO.save(data.projectV());
+        projectDAO.save(data.projectW());
+        projectDAO.save(data.projectX());
+        projectDAO.save(data.projectY());
     }
 
     public void add(PunctuationSystemDAO systemDAO, WalletDAO walletDAO, UserDAO userDAO) {
@@ -52,7 +72,11 @@ public class Loader {
         PunctuationSystem system = systemDAO.save(sys);
 
         Wallet wallet = walletDAO.save(new Wallet(0.0, system));
-        userDAO.save(new User("name", "nickname", "a@email.com","password", wallet));
+        Wallet otherWallet = walletDAO.save(new Wallet(100.0, system));
+        userDAO.save(new User("name", "slave", "a@email.com","password", wallet));
 
+        User admin = new User("admin", "master", "admin@email.com","1234", otherWallet);
+        admin.becameAdmin();
+        userDAO.save(admin);
     }
 }

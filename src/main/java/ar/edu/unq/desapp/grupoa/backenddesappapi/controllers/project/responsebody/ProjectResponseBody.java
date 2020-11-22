@@ -21,6 +21,7 @@ public class ProjectResponseBody {
     private List<DonationResponseBody> donations;
     private Double minimumPercentage;
     private Boolean coverTheMinimumPercentage;
+    private Boolean isOpen;
 
     public ProjectResponseBody(Project recoverProject) {
         this.id = recoverProject.getId();
@@ -33,6 +34,7 @@ public class ProjectResponseBody {
         this.donations = this.mapDonations(recoverProject.getDonations());
         this.minimumPercentage = recoverProject.getMinimumPercentage();
         this.coverTheMinimumPercentage = recoverProject.isCoverTheMinimumPercentage();
+        this.isOpen = recoverProject.isOpen();
     }
 
     public ProjectResponseBody() {
@@ -121,5 +123,13 @@ public class ProjectResponseBody {
 
     public void setCoverTheMinimumPercentage(Boolean coverTheMinimumPercentage) {
         this.coverTheMinimumPercentage = coverTheMinimumPercentage;
+    }
+
+    public Boolean getOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(Boolean open) {
+        isOpen = open;
     }
 }

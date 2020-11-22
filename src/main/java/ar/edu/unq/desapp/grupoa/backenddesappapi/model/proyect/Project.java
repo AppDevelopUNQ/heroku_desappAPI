@@ -21,6 +21,7 @@ public class Project {
     private LocalDate startDate;
     private LocalDate deadline;
     private Double factor;
+    private Boolean isOpen;
     @OneToOne
     @JoinColumn(name = "localityId")
     private Locality locality;
@@ -40,6 +41,7 @@ public class Project {
         this.factor = factor;
         this.locality = locality;
         this.donations = new ArrayList<>();
+        this.isOpen = true;
     }
 
     public Project(String name, Double minimumClosingPercentage, String fantasyName, LocalDate startDate, LocalDate deadline, Locality locality) {
@@ -51,6 +53,7 @@ public class Project {
         this.factor = 1000.0;
         this.locality = locality;
         this.donations = new ArrayList<>();
+        this.isOpen = true;
     }
 
     public Project(Long id, String name, Double minimumClosingPercentage, String fantasyName, LocalDate startDate, LocalDate deadline, Double factor, Locality locality) {
@@ -63,6 +66,7 @@ public class Project {
         this.factor = factor;
         this.locality = locality;
         this.donations = new ArrayList<>();
+        this.isOpen = true;
     }
 
     public Project(Long id, String name, Double minimumClosingPercentage, String fantasyName, LocalDate startDate, LocalDate deadline, Locality locality) {
@@ -75,6 +79,7 @@ public class Project {
         this.factor = 1000.0;
         this.locality = locality;
         this.donations = new ArrayList<>();
+        this.isOpen = true;
     }
 
     public Long getId() {
@@ -105,6 +110,14 @@ public class Project {
         return this.locality;
     }
 
+    public Boolean isOpen(){
+        return this.isOpen;
+    }
+
+    public void closeProject(){
+        this.isOpen = false;
+    }
+
     public Double calculateTotalAmount() {
         return this.factor * this.locality.getPopulation();
     }
@@ -126,7 +139,7 @@ public class Project {
     }
 
     public boolean isCoverTheMinimumPercentage() {
-        return Math.abs(this.amountFromDonations()) == Math.abs(this.calculateAmountToAccomplish());
+        return Math.abs(this.amountFromDonations()) >= Math.abs(this.calculateAmountToAccomplish());
     }
 
     public void setDeadline(LocalDate newDeadline) {

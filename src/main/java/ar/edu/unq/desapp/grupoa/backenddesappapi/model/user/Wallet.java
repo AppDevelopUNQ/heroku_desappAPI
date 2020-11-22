@@ -65,4 +65,8 @@ public class Wallet {
         Double gainedPoints = this.system.pointsGainForDonationWithRules(newDonation, user);
         this.addPoints(gainedPoints);
     }
+
+    public Double calculatePointsForDonation(Donation newDonation, User user){
+        return this.system.pointsGainForDonationWithRules(newDonation, user);
+    }
 }

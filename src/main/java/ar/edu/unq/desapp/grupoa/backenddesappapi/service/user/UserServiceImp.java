@@ -1,6 +1,7 @@
 package ar.edu.unq.desapp.grupoa.backenddesappapi.service.user;
 
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.requestbody.DonationRequestBody;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.responsebody.DonationResponseBodyUser;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPost;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPut;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserLogIn;
@@ -94,6 +95,14 @@ public class UserServiceImp implements UserService {
         this.validateResult(result, body.getPassword());
         User userRecovered = result.get(0);
         return new UserResponseBody(userRecovered);
+    }
+
+    @Override
+    public List<DonationResponseBodyUser> getDonationsOfUser(Integer id) throws InvalidException {
+        Long value = Long.valueOf(id);
+        this.validateId(value);
+        User userRecovered = userDAO.findById(value).orElse(new User());
+        return new UserResponseBody().mapDonations(userRecovered.getDonations());
     }
 
     private void validateResult(List<User> result, String password) throws InvalidException {

@@ -25,6 +25,7 @@ public class User {
     private String nickname;
     private String email;
     private String password;
+    private Boolean isAdmin;
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Donation> donations;
@@ -41,6 +42,7 @@ public class User {
         this.password = password;
         this.donations = new ArrayList<>();
         this.wallet = wallet;
+        this.isAdmin = false;
     }
 
     public User(Long id, String name, String nickname, String email, String password, Wallet wallet) throws MailValidation {
@@ -51,6 +53,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.wallet = wallet;
+        this.isAdmin = false;
     }
 
     public String getName() {
@@ -76,6 +79,10 @@ public class User {
     public Wallet getWallet() {
         return this.wallet;
     }
+
+    public Boolean getIsAdmin(){ return this.isAdmin; }
+
+    public void becameAdmin() { this.isAdmin = true; }
 
     public void setName(String newName) {
         this.name = newName;
@@ -113,7 +120,8 @@ public class User {
     }
 
     public void createADonation(Double amount, Project project) {
-        Donation newDonation = new Donation(amount, this.nickname, project);
+        Donation newDonation = new Donation(amount, this.nickname, this.email, 0.0, project);
+        newDonation.setPoints(this.wallet.calculatePointsForDonation(newDonation, this));
         this.donations.add(newDonation);
         this.wallet.gainPointsForDonation(newDonation, this);
         newDonation.sendToProject(project);
@@ -156,7 +164,8 @@ public class User {
     }
 
     public void createDonation(Double amount, Project project) {
-        Donation newDonation = new Donation(amount, this.nickname, project);
+        Donation newDonation = new Donation(amount, this.nickname, this.email, 0.0, project);
+        newDonation.setPoints(this.wallet.calculatePointsForDonation(newDonation, this));
         this.donations.add(newDonation);
         this.wallet.gainPointsForNewDonation(newDonation, this);
         newDonation.sendToProject(project);

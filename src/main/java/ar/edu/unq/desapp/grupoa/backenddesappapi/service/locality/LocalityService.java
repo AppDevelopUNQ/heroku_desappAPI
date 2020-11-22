@@ -16,4 +16,6 @@ public interface LocalityService {
     int save(LocalityBodyPost locality) throws InvalidOrNullFieldException;
 
     void delete(Integer id) throws InvalidException;
+
+    Locality updateLocality(Integer localityId, LocalityBodyPost locality) throws InvalidException, InvalidOrNullFieldException;
 }

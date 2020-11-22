@@ -10,11 +10,14 @@ public class DonationResponseBodyUser {
     private Double amount;
     private ProjectResponseBodyList project;
     private LocalDate date;
+    private Double points;
+
     public DonationResponseBodyUser(Donation donation) {
         this.id = donation.getId();
         this.amount = donation.getAmount();
         this.date = donation.getDate();
         this.project = new ProjectResponseBodyList(donation.getProject());
+        this.points = donation.getPoints();
     }
 
     public DonationResponseBodyUser() { }
@@ -49,6 +52,14 @@ public class DonationResponseBodyUser {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Double getPoints() {
+        return points;
+    }
+
+    public void setPoints(Double points) {
+        this.points = points;
     }
 }
 

@@ -11,26 +11,32 @@ public class Donation {
     private Long id;
     private Double amount;
     private String nickname;
+    private String email;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Project project;
     private LocalDate date;
+    private Double points;
 
     public Donation() {
     }
 
-    public Donation(Long id, Double amount, String nickname, Project project) {
+    public Donation(Long id, Double amount, String nickname, String email, Double points, Project project) {
         this.id = id;
         this.amount = amount;
         this.nickname = nickname;
+        this.email = email;
         this.project = project;
         this.date = LocalDate.now();
+        this.points = points;
     }
 
-    public Donation(Double amount, String nickname, Project project) {
+    public Donation(Double amount, String nickname, String email, Double points, Project project) {
         this.amount = amount;
         this.nickname = nickname;
+        this.email = email;
         this.project = project;
         this.date = LocalDate.now();
+        this.points = points;
     }
 
     public Long getId() {
@@ -87,5 +93,21 @@ public class Donation {
 
     public boolean isOfThisYear(int year) {
         return this.getDate().getYear() == year;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Double getPoints() {
+        return points;
+    }
+
+    public void setPoints(Double points) {
+        this.points = points;
     }
 }

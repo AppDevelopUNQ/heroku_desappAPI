@@ -10,6 +10,7 @@ public class DonationResponseBody {
     private Double amount;
     private LocalDate date;
     private String userNickname;
+    private String email;
 
     public DonationResponseBody(){}
 
@@ -18,6 +19,7 @@ public class DonationResponseBody {
         this.amount = donation.getAmount();
         this.date = donation.getDate();
         this.userNickname = donation.getNickname();
+        this.email = donation.getEmail();
     }
 
     public Long getId() {
@@ -50,5 +52,13 @@ public class DonationResponseBody {
 
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
