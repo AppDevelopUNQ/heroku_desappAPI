@@ -2,6 +2,7 @@ package ar.edu.unq.desapp.grupoa.backenddesappapi.service.user;
 
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.requestbody.DonationRequestBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.responsebody.DonationResponseBodyUser;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserAuth;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPost;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPut;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserLogIn;
@@ -103,6 +104,23 @@ public class UserServiceImp implements UserService {
         this.validateId(value);
         User userRecovered = userDAO.findById(value).orElse(new User());
         return new UserResponseBody().mapDonations(userRecovered.getDonations());
+    }
+
+    @Override
+    public UserResponseBody saveUpdate(UserAuth user) throws MailValidation {
+        this.validateEmail(user.getEmail());
+        List<User> result = ((List <User>)userDAO.findAll());
+        result = result.stream().filter(aUser -> aUser.getEmail().equals(user.getEmail())).collect(Collectors.toList());
+        if(result.isEmpty()){
+            PunctuationSystem system = systemDAO.findAll().iterator().next();
+            Wallet newWallet = walletDAO.save(new Wallet(0.0, system));
+            User newUser = new User(user.getName(), user.getNickname(), user.getEmail(), "", newWallet);
+            userDAO.save(newUser);
+            return new UserResponseBody(newUser);
+        }
+        else{
+            return new UserResponseBody(result.get(0));
+        }
     }
 
     private void validateResult(List<User> result, String password) throws InvalidException {

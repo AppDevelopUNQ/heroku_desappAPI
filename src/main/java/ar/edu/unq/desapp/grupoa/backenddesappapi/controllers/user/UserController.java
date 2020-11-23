@@ -2,6 +2,7 @@ package ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user;
 
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.requestbody.DonationRequestBody;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.donation.responsebody.DonationResponseBodyUser;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserAuth;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPost;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserBodyPut;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.user.requestbody.UserLogIn;
@@ -91,6 +92,13 @@ public class UserController {
     public ResponseEntity<Integer> save(@RequestBody UserBodyPost user) throws MailValidation, InvalidOrNullFieldException {
         logger.info("method: POST | route: /user/register | parameters: none | body: "+user);
         return new ResponseEntity<>(userService.save(user), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PostMapping(value = "/auth", produces = { "application/json" },consumes = { "application/json" })
+    public ResponseEntity<UserResponseBody> saveAuth(@RequestBody UserAuth user) throws MailValidation, InvalidOrNullFieldException {
+        logger.info("method: POST | route: /user/auth | parameters: none | body: "+user);
+        return new ResponseEntity<>(userService.saveUpdate(user), HttpStatus.OK);
     }
 
     //DELETE_ONE exception for id
