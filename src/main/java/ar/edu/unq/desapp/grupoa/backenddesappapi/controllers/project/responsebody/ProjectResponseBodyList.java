@@ -11,6 +11,8 @@ public class ProjectResponseBodyList {
     private String fantasyName;
     private LocalDate deadline;
     private Boolean coverTheMinimumPercentage;
+    private Double missingAmount;
+    private Double missingPercentage;
 
     public ProjectResponseBodyList(Project project) {
         this.id = project.getId();
@@ -18,6 +20,8 @@ public class ProjectResponseBodyList {
         this.fantasyName = project.getFantasyName();
         this.deadline = project.getDeadline();
         this.coverTheMinimumPercentage = project.isCoverTheMinimumPercentage();
+        this.missingAmount = project.missingAmount();
+        this.missingPercentage = project.missingPercentage();
     }
 
     public ProjectResponseBodyList() {
@@ -62,5 +66,21 @@ public class ProjectResponseBodyList {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Double getMissingPercentage() {
+        return missingPercentage;
+    }
+
+    public void setMissingPercentage(Double missingPercentage) {
+        this.missingPercentage = missingPercentage;
+    }
+
+    public Double getMissingAmount() {
+        return missingAmount;
+    }
+
+    public void setMissingAmount(Double missingAmount) {
+        this.missingAmount = missingAmount;
     }
 }

@@ -21,6 +21,8 @@ public class ProjectResponseBody {
     private List<DonationResponseBody> donations;
     private Double minimumPercentage;
     private Boolean coverTheMinimumPercentage;
+    private Double missingAmount;
+    private Double missingPercentage;
     private Boolean isOpen;
 
     public ProjectResponseBody(Project recoverProject) {
@@ -34,6 +36,8 @@ public class ProjectResponseBody {
         this.donations = this.mapDonations(recoverProject.getDonations());
         this.minimumPercentage = recoverProject.getMinimumPercentage();
         this.coverTheMinimumPercentage = recoverProject.isCoverTheMinimumPercentage();
+        this.missingPercentage = recoverProject.missingPercentage();
+        this.missingAmount = recoverProject.missingAmount();
         this.isOpen = recoverProject.isOpen();
     }
 
@@ -131,5 +135,21 @@ public class ProjectResponseBody {
 
     public void setOpen(Boolean open) {
         isOpen = open;
+    }
+
+    public Double getMissingAmount() {
+        return missingAmount;
+    }
+
+    public void setMissingAmount(Double missingAmount) {
+        this.missingAmount = missingAmount;
+    }
+
+    public Double getMissingPercentage() {
+        return missingPercentage;
+    }
+
+    public void setMissingPercentage(Double missingPercentage) {
+        this.missingPercentage = missingPercentage;
     }
 }

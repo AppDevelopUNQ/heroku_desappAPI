@@ -138,6 +138,25 @@ public class Project {
         return this.calculateTotalAmount() * (this.minimumClosingPercentage/100);
     }
 
+    public Double missingAmount(){
+        if(this.amountFromDonations() > this.calculateAmountToAccomplish()){
+            return 0.0;
+        }
+        else {
+            return (this.calculateAmountToAccomplish()) - (this.amountFromDonations());
+        }
+    }
+
+    public Double missingPercentage(){
+        if(this.amountFromDonations() == 0){
+            return this.minimumClosingPercentage;
+        }
+        else{
+            return this.minimumClosingPercentage -((this.amountFromDonations()) * this.minimumClosingPercentage /this.calculateAmountToAccomplish());
+        }
+
+    }
+
     public boolean isCoverTheMinimumPercentage() {
         return Math.abs(this.amountFromDonations()) >= Math.abs(this.calculateAmountToAccomplish());
     }
