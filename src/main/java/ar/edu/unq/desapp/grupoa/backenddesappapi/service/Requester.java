@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoa.backenddesappapi.service;
 
+import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Project;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.model.user.User;
 import org.springframework.scheduling.annotation.Async;
 
 import java.io.IOException;
@@ -10,11 +12,28 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
 public class Requester {
     public Requester(){}
+
+    @Async
+    public void sendNews(List<User> users, Project project) throws IOException {
+        System.out.println();
+        System.out.println(users.size());
+        System.out.println();
+        for (User user : users) {
+            this.requestToNotify(("Notify News about Project "+ project.getName()), this.message(user, project), user.getEmail());
+        }
+    }
+
+    private String message(User user, Project project){
+        return  "Dear " + user.getNickname()
+                + "We inform you that project "+project.getName()+ " has been closed."
+                + "Thanks to your donation";
+    }
 
     public void requestToNotify(String subject, String message, String receptor) throws IOException {
         URL url = new URL("https://devappnotification.herokuapp.com/api/notify");
