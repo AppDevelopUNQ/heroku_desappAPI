@@ -79,4 +79,8 @@ public class Locality {
     public void setProvince(String province) {
         this.province = province;
     }
+
+    public Integer getConnection() {
+        return this.stateOfConnection.intValue();
+    }
 }

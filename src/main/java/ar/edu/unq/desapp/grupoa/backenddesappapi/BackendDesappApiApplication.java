@@ -13,6 +13,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -21,6 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 @EnableSwagger2
 @Configuration
+@EnableScheduling
 @EnableAutoConfiguration
 @ComponentScan
 public class BackendDesappApiApplication {
@@ -37,5 +39,6 @@ public class BackendDesappApiApplication {
         loader.addLocalitiesEntities(localityDAO);
         loader.addProjectEntities(projectDAO);
         loader.add(systemDAO, walletDAO, userDAO);
+        loader.addMore(localityDAO);
 	}
 }

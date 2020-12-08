@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoa.backenddesappapi.service;
 
+import org.springframework.scheduling.annotation.Async;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;

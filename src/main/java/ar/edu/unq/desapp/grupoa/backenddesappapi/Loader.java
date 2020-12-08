@@ -74,12 +74,23 @@ public class Loader {
         Wallet wallet = walletDAO.save(new Wallet(0.0, system));
         Wallet otherWallet = walletDAO.save(new Wallet(100.0, system));
         Wallet walletIS = walletDAO.save(new Wallet(15364.0, system));
-        userDAO.save(new User("name", "slave", "a@email.com","password", wallet));
+        userDAO.save(new User("name", "slave", "axel.lopez.garabal@gmail.com","password", wallet));
 
         User admin = new User("admin", "master", "axel.lopez.garabal@gmail.com","1234", otherWallet);
         User otherUser = new User("App Develop", "AppDevelop", "appdevelop.unq@gmail.com","AppDevelop2020", walletIS);
         admin.becameAdmin();
         userDAO.save(admin);
         userDAO.save(otherUser);
+
+    }
+
+    public void addMore(LocalityDAO localityDAO) {
+        localityDAO.save(data.locality4());
+        localityDAO.save(data.locality5());
+        localityDAO.save(data.locality6());
+        localityDAO.save(data.locality7());
+        localityDAO.save(data.locality8());
+        localityDAO.save(data.locality9());
+        localityDAO.save(data.localityA());
     }
 }

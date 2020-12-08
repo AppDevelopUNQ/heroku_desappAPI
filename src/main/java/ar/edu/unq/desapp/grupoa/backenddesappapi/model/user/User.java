@@ -170,4 +170,12 @@ public class User {
         this.wallet.gainPointsForNewDonation(newDonation, this);
         newDonation.sendToProject(project);
     }
+
+    public boolean hasDonateToProject(Project recoverProject) {
+        boolean result = false;
+        for(Donation donation : this.donations){
+            result = result || donation.getProject() == recoverProject;
+        }
+        return result;
+    }
 }

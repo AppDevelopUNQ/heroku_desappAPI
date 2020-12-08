@@ -134,6 +134,10 @@ public class Project {
         return this.donations.stream().mapToDouble(Donation::getAmount).sum();
     }
 
+    public Integer totalAmountFromDonations() {
+        return (int)this.donations.stream().mapToDouble(Donation::getAmount).sum();
+    }
+
     public Double calculateAmountToAccomplish() {
         return this.calculateTotalAmount() * (this.minimumClosingPercentage/100);
     }

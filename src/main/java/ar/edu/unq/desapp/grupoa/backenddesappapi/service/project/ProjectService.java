@@ -7,6 +7,7 @@ import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.project.responsebod
 import ar.edu.unq.desapp.grupoa.backenddesappapi.controllers.project.responsebody.ProjectResponseBodyList;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidException;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.exception.InvalidOrNullFieldException;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Locality;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,4 +26,8 @@ public interface ProjectService {
     ProjectResponseBody closeProject(Long id, Long userId) throws InvalidException, IOException;
 
     List<ProjectResponseBodyList> filterProjects(ProjectFilter body);
+
+    List<ProjectResponseBodyList> topProjects() throws InvalidException, IOException;
+
+    List<Locality> tenLocallities();
 }

@@ -14,12 +14,16 @@ import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Locality;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Project;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.user.User;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.service.Requester;
+import ar.edu.unq.desapp.grupoa.backenddesappapi.service.email.EmailService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +33,7 @@ public class ProjectServiceImp implements ProjectService {
     private @Autowired ProjectDAO projectDAO;
     private @Autowired LocalityDAO localityDAO;
     private @Autowired UserDAO userDAO;
-    private Requester requester = new Requester();
+    private @Autowired EmailService emailService;
 
     @Override
     public List<ProjectResponseBodyList> listAllProjects() {
@@ -116,16 +120,43 @@ public class ProjectServiceImp implements ProjectService {
         Project recoverProject = projectDAO.findById(id).orElse(new Project());
         recoverProject.closeProject();
         projectDAO.save(recoverProject);
-        recoverProject.getDonations().forEach(donation -> {
-            try {
-                String subject = "the project "+ recoverProject.getName()+ "has been close";
-                String message = "this mail is to inform you that the project "+ recoverProject.getName() + " will be close";
-                this.requester.requestToNotify(subject, message, donation.getEmail());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        this.emailService.notifyNews(this.usersThatDonate(recoverProject), recoverProject);
         return new ProjectResponseBody(recoverProject);
+    }
+
+    @Override
+    public List<ProjectResponseBodyList> topProjects() throws InvalidException, IOException {
+        List<Project> top10 = this.filterTop10((List<Project>) projectDAO.findAll());
+        List<User> allUsers = (List<User>) userDAO.findAll();
+        this.emailService.sendTop10Projects(allUsers, top10);
+        return top10.stream()
+                .map(ProjectResponseBodyList::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Locality> tenLocallities() {
+        List<Locality> localities = (List<Locality>) this.localityDAO.findAll();
+        List<User> users = (List<User>) userDAO.findAll();
+        List<Locality> top = localities
+                .stream()
+                .sorted(Comparator.comparingInt(Locality::getConnection))
+                .collect(Collectors.toList())
+                .subList(0,10);
+        this.emailService.sendTop10Locations(users, top);
+        return top;
+    }
+
+    private List<Project> filterTop10(List<Project> all) {
+        return all.stream()
+                .sorted(Comparator.comparingInt(Project::totalAmountFromDonations).reversed())
+                .collect(Collectors.toList()).subList(0, 10);
+    }
+
+    private List<User> usersThatDonate(Project recoverProject) {
+        return ((List<User>) userDAO.findAll()).stream().filter(user ->
+                    user.hasDonateToProject(recoverProject)
+            ).collect(Collectors.toList());
     }
 
     private void validateAdminId(Long adminId) throws InvalidException {

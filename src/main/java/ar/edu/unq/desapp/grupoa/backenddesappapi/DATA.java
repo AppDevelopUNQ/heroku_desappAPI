@@ -16,10 +16,17 @@ import java.util.List;
 
 public class DATA{
 
-    private Locality locality = new Locality("L1", "province", 250, 15.0);
-    private Locality locality1 = new Locality("L2", "province", 250, 25.0);
-    private Locality locality2 = new Locality("L3", "province", 2500, 35.0);
-    private Locality locality3 = new Locality("L4", "province", 25000, 45.0);
+    private Locality locality = new Locality("L1", "provinceA", 250, 15.0);
+    private Locality locality1 = new Locality("L2", "provinceB", 250, 25.0);
+    private Locality locality2 = new Locality("L3", "provinceB", 2000, 35.0);
+    private Locality locality3 = new Locality("L4", "provinceA", 40000, 40.0);
+    private Locality locality4 = new Locality("L5", "provinceC", 5000, 45.0);
+    private Locality locality5 = new Locality("L6", "provinceD", 35000, 50.0);
+    private Locality locality6 = new Locality("L7", "provinceA", 85000, 60.0);
+    private Locality locality7 = new Locality("L8", "provinceV", 20000, 20.0);
+    private Locality locality8 = new Locality("L9", "provinceF", 40000, 10.0);
+    private Locality locality9 = new Locality("LA", "provinceE", 17000, 90.0);
+    private Locality localityA = new Locality("LB", "provinceG", 25000, 100.0);
 
     private Project project = new Project("P1", 90.0, "FP1", LocalDate.now(),  LocalDate.parse("2022-11-27"), this.locality);
     private Project projectB = new Project("P2", 80.0, "FP2", LocalDate.now(), LocalDate.parse("2023-11-27"), 200.0, this.locality1);
@@ -76,6 +83,27 @@ public class DATA{
     }
     public Locality locality3() {
         return this.locality3;
+    }
+    public Locality locality4() {
+        return this.locality4;
+    }
+    public Locality locality5() {
+        return this.locality5;
+    }
+    public Locality locality6() {
+        return this.locality6;
+    }
+    public Locality locality7() {
+        return this.locality7;
+    }
+    public Locality locality8() {
+        return this.locality8;
+    }
+    public Locality locality9() {
+        return this.locality9;
+    }
+    public Locality localityA() {
+        return this.localityA;
     }
     public Donation donation(){return this.donation;}
     public InvertedCash forCash(){return this.forCash;}
