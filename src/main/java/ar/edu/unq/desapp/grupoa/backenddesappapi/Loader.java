@@ -74,7 +74,7 @@ public class Loader {
         Wallet wallet = walletDAO.save(new Wallet(0.0, system));
         Wallet otherWallet = walletDAO.save(new Wallet(100.0, system));
         Wallet walletIS = walletDAO.save(new Wallet(15364.0, system));
-        userDAO.save(new User("name", "slave", "axel.lopez.garabal@gmail.com","password", wallet));
+        userDAO.save(new User("name", "slave", "sebastianincarbonew@gmail.com","password", wallet));
 
         User admin = new User("admin", "master", "axel.lopez.garabal@gmail.com","1234", otherWallet);
         User otherUser = new User("App Develop", "AppDevelop", "appdevelop.unq@gmail.com","AppDevelop2020", walletIS);
