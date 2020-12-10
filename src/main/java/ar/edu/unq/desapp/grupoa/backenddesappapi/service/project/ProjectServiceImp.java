@@ -121,8 +121,8 @@ public class ProjectServiceImp implements ProjectService {
         Project recoverProject = projectDAO.findById(id).orElse(new Project());
         recoverProject.closeProject();
         projectDAO.save(recoverProject);
-        this.emailService.notifyNews(this.usersThatDonate(recoverProject), recoverProject);
-        //this.requester.sendNews(this.usersThatDonate(recoverProject), recoverProject);
+        //this.emailService.notifyNews(this.usersThatDonate(recoverProject), recoverProject);
+        this.requester.sendNews(this.usersThatDonate(recoverProject), recoverProject);
         return new ProjectResponseBody(recoverProject);
     }
 
