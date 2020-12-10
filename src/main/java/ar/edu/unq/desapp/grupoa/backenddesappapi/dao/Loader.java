@@ -1,5 +1,6 @@
-package ar.edu.unq.desapp.grupoa.backenddesappapi;
+package ar.edu.unq.desapp.grupoa.backenddesappapi.dao;
 
+import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.DATA;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.locality.LocalityDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.project.ProjectDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.punctuationsystem.PunctuationSystemDAO;
@@ -92,5 +93,12 @@ public class Loader {
         localityDAO.save(data.locality8());
         localityDAO.save(data.locality9());
         localityDAO.save(data.localityA());
+    }
+
+    public void prepare(LocalityDAO localityDAO, ProjectDAO projectDAO, PunctuationSystemDAO systemDAO, WalletDAO walletDAO, UserDAO userDAO){
+        this.addLocalitiesEntities(localityDAO);
+        this.addProjectEntities(projectDAO);
+        this.add(systemDAO, walletDAO, userDAO);
+        this.addMore(localityDAO);
     }
 }

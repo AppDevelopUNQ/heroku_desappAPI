@@ -121,8 +121,8 @@ public class ProjectServiceImp implements ProjectService {
         Project recoverProject = projectDAO.findById(id).orElse(new Project());
         recoverProject.closeProject();
         projectDAO.save(recoverProject);
-        //this.emailService.notifyNews(this.usersThatDonate(recoverProject), recoverProject);
-        this.requester.sendNews(this.usersThatDonate(recoverProject), recoverProject);
+        this.emailService.notifyNews(this.usersThatDonate(recoverProject), recoverProject);
+        //this.requester.sendNews(this.usersThatDonate(recoverProject), recoverProject);
         return new ProjectResponseBody(recoverProject);
     }
 
@@ -130,7 +130,7 @@ public class ProjectServiceImp implements ProjectService {
     public List<ProjectResponseBodyList> topProjects() throws InvalidException, IOException {
         List<Project> top10 = this.filterTop10((List<Project>) projectDAO.findAll());
         List<User> allUsers = (List<User>) userDAO.findAll();
-        //this.emailService.sendTop10Projects(allUsers, top10);
+        this.emailService.sendTop10Projects(allUsers, top10);
         return top10.stream()
                 .map(ProjectResponseBodyList::new)
                 .collect(Collectors.toList());
@@ -145,7 +145,7 @@ public class ProjectServiceImp implements ProjectService {
                 .sorted(Comparator.comparingInt(Locality::getConnection))
                 .collect(Collectors.toList())
                 .subList(0,10);
-        //this.emailService.sendTop10Locations(users, top);
+        this.emailService.sendTop10Locations(users, top);
         return top;
     }
 

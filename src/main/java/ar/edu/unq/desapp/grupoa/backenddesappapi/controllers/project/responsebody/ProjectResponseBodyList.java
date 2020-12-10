@@ -13,6 +13,7 @@ public class ProjectResponseBodyList {
     private Boolean coverTheMinimumPercentage;
     private Double missingAmount;
     private Double missingPercentage;
+    private Boolean open;
 
     public ProjectResponseBodyList(Project project) {
         this.id = project.getId();
@@ -22,6 +23,7 @@ public class ProjectResponseBodyList {
         this.coverTheMinimumPercentage = project.isCoverTheMinimumPercentage();
         this.missingAmount = project.missingAmount();
         this.missingPercentage = project.missingPercentage();
+        this.open = project.isOpen();
     }
 
     public ProjectResponseBodyList() {
@@ -82,5 +84,13 @@ public class ProjectResponseBodyList {
 
     public void setMissingAmount(Double missingAmount) {
         this.missingAmount = missingAmount;
+    }
+
+    public Boolean getOpen() {
+        return open;
+    }
+
+    public void setOpen(Boolean open) {
+        this.open = open;
     }
 }

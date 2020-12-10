@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoa.backenddesappapi;
 
+import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.Loader;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.locality.LocalityDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.project.ProjectDAO;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.dao.punctuationsystem.PunctuationSystemDAO;
@@ -10,13 +11,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
@@ -35,10 +32,6 @@ public class BackendDesappApiApplication {
         WalletDAO walletDAO = configApp.getBean(WalletDAO.class);
         PunctuationSystemDAO systemDAO = configApp.getBean(PunctuationSystemDAO.class);
 
-        Loader loader = new Loader();
-        loader.addLocalitiesEntities(localityDAO);
-        loader.addProjectEntities(projectDAO);
-        loader.add(systemDAO, walletDAO, userDAO);
-        loader.addMore(localityDAO);
+        new Loader().prepare(localityDAO, projectDAO, systemDAO, walletDAO, userDAO);
 	}
 }

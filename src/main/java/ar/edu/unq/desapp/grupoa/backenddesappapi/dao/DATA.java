@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoa.backenddesappapi;
+package ar.edu.unq.desapp.grupoa.backenddesappapi.dao;
 
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.interfaces.IRule;
 import ar.edu.unq.desapp.grupoa.backenddesappapi.model.proyect.Donation;

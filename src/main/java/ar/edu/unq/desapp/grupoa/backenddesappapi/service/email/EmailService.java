@@ -42,6 +42,7 @@ public class EmailService {
                             + "<div> Dear " + user.getNickname() + "</div>"
                             + "<div>We inform you that project <strong> "+project.getName()+ "</strong> has been closed.</div>"
                             + "</div>"
+                            + "<div><strong>PS: we encourage you to participate in another project</strong></div>"
                             + "<div>Thanks to your donation.</div>"
                             + "</body>"
                             + "</html>", true);
@@ -81,9 +82,9 @@ public class EmailService {
                     "<html>"
                             + "<body>"
                             + "<div>"
-                            + "<div>Dear " + user.getNickname() + "</div>"
-                            + "<div>This is the 10 of  the donated projects: </div>"
+                            + "<div>This mail is to  you of the 10 most the donated projects: </div>"
                             + "<div><strong>"+projectNames+ "</strong></div>"
+                            + "<div><strong> this is only a suggestion to encourage you to participate in another project</strong></div>"
                             + "</div>"
                             + "</body>"
                             + "</html>", true);
@@ -109,14 +110,14 @@ public class EmailService {
         try {
             helper = new MimeMessageHelper(mailMessage, true);
             helper.setTo(user.getEmail());
-            helper.setSubject("Tops 10 Localidades");
+            helper.setSubject("Tops 10 Localities");
             helper.setText(
                     "<html>"
                             + "<body>"
                             + "<div>"
-                            + "<div> Dear " + user.getEmail() + "</div>"
                             + "<div>this is the top 10 of less donated localities: </div>"
                             + "<div><strong>"+locationsNames+ "</strong></div>"
+                            + "<div><strong> this is only a suggestion to encourage you to participate in another project</strong></div>"
                             + "</div>"
                             + "</body>"
                             + "</html>", true);
